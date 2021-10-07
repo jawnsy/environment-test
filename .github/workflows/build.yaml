@@ -43,6 +43,24 @@ jobs:
           CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
           VERCEL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Slack alert on CI failure
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,author,workflow,action,eventName
+          channel: "#security-notifications"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Slack alert on CI failure
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,author,workflow,action,eventName
+          channel: "#coverage-notifications"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
   nothing:
     runs-on: ubuntu-20.04
     steps:
