@@ -45,7 +45,6 @@ jobs:
 
       - name: Slack alert on CI failure
         uses: 8398a7/action-slack@v3
-        if: failure() && github.ref == 'refs/heads/master'
         with:
           status: ${{ job.status }}
           fields: repo,message,author,workflow,action,eventName
@@ -55,7 +54,6 @@ jobs:
 
       - name: Slack alert on CI failure
         uses: 8398a7/action-slack@v3
-        if: failure() && github.ref == 'refs/heads/master'
         with:
           status: ${{ job.status }}
           fields: repo,message,author,workflow,action,eventName
