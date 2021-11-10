@@ -11,6 +11,9 @@ on:
 
   workflow_dispatch:
 
+concurrency: 
+  cancel-in-progress: github.event_name == "pull_request"
+
 permissions:
   actions: none
   checks: none
@@ -46,7 +49,6 @@ jobs:
   cancel:
     runs-on: ubuntu-20.04
     concurrency: ${{ github.ref_name }}
-    cancel-in-progress: ${{ github.event_name == "pull_request" }}
     steps:
       - name: Step 1
         run: sleep 120
